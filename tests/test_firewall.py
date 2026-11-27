@@ -169,3 +169,17 @@ def test_end_to_end_mcp_firewall_402_webhooks_rate_limit_and_tamper(tmp_path: Pa
     finally:
         srv.shutdown()
         srv.server_close()
+
+
+def test_vercel_handler_exports_http_handler(tmp_path: Path) -> None:
+    import importlib.util
+    import os
+    from http.server import BaseHTTPRequestHandler
+
+    os.environ["FIREWALL_DB_PATH"] = str(tmp_path / "vercel_test.db")
+    entry = Path(__file__).resolve().parent.parent / "api" / "index.py"
+    spec = importlib.util.spec_from_file_location("vercel_api_index", entry)
+    assert spec is not None and spec.loader is not None
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert issubclass(mod.handler, BaseHTTPRequestHandler)

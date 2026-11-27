@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/api/index.py" },
+    { "source": "/health", "destination": "/api/index.py" },
+    { "source": "/audit/verify", "destination": "/api/index.py" },
+    { "source": "/mcp", "destination": "/api/index.py" },
+    { "source": "/webhooks/:provider", "destination": "/api/index.py" }
+  ]
+}
