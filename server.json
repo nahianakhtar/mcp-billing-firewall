@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.nahianakhtar/mcp-billing-firewall",
+  "description": "Zero-dependency MCP 2025-11-25 security firewall, prompt-injection & SSRF blocker, exact micro-credit HTTP 402 / x402 billing proxy, Stripe/Polar HMAC webhook receiver, and SHA-256 hash-chained audit ledger.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "http://127.0.0.1:8091/mcp"
+    }
+  ]
+}

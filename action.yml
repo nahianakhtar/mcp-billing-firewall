@@ -1,0 +1,13 @@
+name: "MCP Firewall Audit Chain Verifier"
+description: "Verify tamper-evident SHA-256 SQLite audit chains produced by mcp-billing-firewall in CI."
+inputs:
+  db_path:
+    description: "Path to SQLite WAL audit ledger file"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Verify SHA-256 Audit Chain
+      shell: bash
+      run: |
+        PYTHONPATH="${{ github.action_path }}/src" python3 -m mcp_firewall.server --verify-chain "${{ inputs.db_path }}"
